@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Notes Manager - Interview Assessment</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text y=%2250%22 font-size=%2250%22>📝</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>📝 Offline Notes Manager</h1>
+            <button id="darkModeBtn" class="dark-mode-btn" title="Toggle dark mode">🌙</button>
+        </header>
+
+        <div class="container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>My Notes</h2>
+                    <button id="newBtn" class="new-btn" title="Create new note">+ New</button>
+                </div>
+
+                <!-- Search -->
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="search" 
+                        class="search-input"
+                        placeholder="Search notes...">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy" class="filter-select">
+                            <option value="updated-desc">Latest Modified</option>
+                            <option value="updated-asc">Oldest Modified</option>
+                            <option value="created-desc">Newest Created</option>
+                            <option value="created-asc">Oldest Created</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="tagFilter">Filter by tag:</label>
+                        <select id="tagFilter" class="filter-select">
+                            <option value="">All Tags</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Notes List -->
+                <div class="notes-list-container">
+                    <div id="notesList" class="notes-list"></div>
+                    <div id="emptyState" class="empty-state">
+                        <p>No notes yet</p>
+                        <p class="hint">Create your first note to get started</p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="sidebar-stats">
+                    <div class="stat">
+                        <span class="stat-label">Notes:</span>
+                        <span id="notesCount" class="stat-value">0</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Editor -->
+            <main class="editor">
+                <div id="emptyEditor" class="empty-editor">
+                    <div class="empty-editor-content">
+                        <p class="empty-icon">📄</p>
+                        <p>Select a note or create a new one to get started</p>
+                    </div>
+                </div>
+
+                <div id="editorContent" class="editor-content" style="display: none;">
+                    <!-- Title -->
+                    <div class="editor-field">
+                        <label for="title">Title</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            class="editor-input title-input"
+                            placeholder="Enter note title...">
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="editor-field">
+                        <label for="tags">Tags</label>
+                        <input 
+                            type="text" 
+                            id="tags" 
+                            class="editor-input tags-input"
+                            placeholder="Separate tags with commas (e.g., work, important)">
+                        <div id="tagsDisplay" class="tags-display"></div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="editor-field">
+                        <label for="content">Content</label>
+                        <textarea 
+                            id="content" 
+                            class="editor-textarea"
+                            placeholder="Write your note here..."></textarea>
+                    </div>
+
+                    <!-- Meta Info -->
+                    <div class="meta-info">
+                        <span id="metaInfo" class="meta-text"></span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="editor-actions">
+                        <div class="action-group">
+                            <button id="saveBtn" class="btn btn-save" title="Save note">💾 Save</button>
+                            <button id="deleteBtn" class="btn btn-delete" title="Delete note">🗑️ Delete</button>
+                        </div>
+                        <div class="action-group">
+                            <button id="exportBtn" class="btn btn-export" title="Export all notes as JSON">⬇️ Export All</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Message -->
+                    <div id="status" class="status-message"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- IndexedDB & App Script -->
+    <script src="script.js"></script>
+</body>
+</html>
